@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="row" id="mainDiv">
+    <div class="col-md-6 mainDiv" *ngFor="let dummy of ' '.repeat(count).split(''), let x = index">
+      <div class="col-md-12 customClass"><div class="boxNumber">{{x}}</div><app-child (messageEvent)="receiveMessage($event)"></app-child></div>
+    </div>
+  </div>
+</div>
+
+<!-- <router-outlet></router-outlet> -->
