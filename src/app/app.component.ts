@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, ElementRef, ViewChild, ApplicationRef, Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -9,18 +9,36 @@ export class AppComponent {
   title = 'task';
   count = 4;
   message: any;
+  noResult: boolean = true;
+  @ViewChild('render') private nameInputRef: any;
+  constructor(private renderer: Renderer2) {}
+  receiveMessage(id) {
+    if(id == 0)
+    {
+      
+      // Method 1
+      // var queue = document.getElementById('mainDiv');
+      // var elements = queue.getElementsByClassName('mainDiv');
+      // queue.removeChild(elements[0]);
+      // if(elements.length == 1)
+      //   this.noResult = false;
 
-  receiveMessage($event) {
-    this.message = $event;
-    console.log("clicked");
+      //Method 2
+      this.nameInputRef.nativeElement.children[0].remove();
+      if(this.nameInputRef.nativeElement.children.length == 0)
+      this.noResult = false;
 
-    var queue = document.getElementById('mainDiv');
-    var elements = queue.getElementsByClassName('mainDiv');
-    queue.removeChild(elements[0]);
+      // Method 3 this is removing from last
+      // this.count--;
+      // if(this.count == 0)
+      //   this.noResult = false;
 
-    // console.log("elements[0]",elements[0]);
+    }
+    else
+    {
+      return;
+    }
 
-    // var elements = document.getElementById('mainDiv').firstChild.remove();;
-// queue.removeChild(elements[0]); 
+
   }
 }
